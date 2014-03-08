@@ -1,0 +1,6 @@
+%h1 Course Index
+%table
+  - @courses.each do |course|
+    %tr
+      %td=course.name
+      %td=link_to "Grades", edit_grade_path(course.id)

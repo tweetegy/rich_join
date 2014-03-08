@@ -1,0 +1,15 @@
+%h1 Edit Grades
+
+= simple_form_for "students", :url => grade_path, :method => :put do |f|
+
+  - @grades.each do |grade|
+
+    = f.fields_for "grade[]", grade, index: grade.id do |f|
+
+      = f.hidden_field :student_id, value: grade.student_id
+
+      = f.hidden_field :course_id, value: grade.course_id
+
+      = f.input :percentage, label: grade.try(:student_full_name)
+
+  = submit_tag "Save", id: 'btn-submit'
